@@ -1,0 +1,79 @@
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix rr: <http://www.w3.org/ns/r2rml#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix eq: <http://www.eqgraph.ru/ont#>
+base <http://www.eqgraph.ru/ont#>
+
+<#EquationMapping> a rr:TriplesMap;
+  rml:logicalSource [
+    rml:source "equations.xml" ;
+    rml:iterator "/ArrayOfEquation/Equation";
+    rml:referenceFormulation ql:XPath;
+  ];
+
+  rr:subjectMap [
+    rr:template "http://www.eqgraph.ru/{URI}";
+  ];
+
+  rr:predicateObjectMap [
+  rr:predicate rdf:type;
+  rr:objectMap [
+    rml:reference "LinkedOmpConcept";
+    rr:termType rr:IRI;
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate rdfs:label;
+    rr:objectMap [
+      rml:reference "Labels/Label/LabelText";
+      rml:languageMap [
+        rml:reference "Labels/Label/LangTag"
+      ]
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate eq:stringForm;
+    rr:objectMap [
+      rml:reference "StringForm"
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate eq:latexForm;
+    rr:objectMap [
+      rml:reference "LatexForm"
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate eq:htmlForm;
+    rr:objectMap [
+      rml:reference "HtmlForm"
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate rdfs:comment;
+    rr:objectMap [
+      rml:reference "Comments/string"
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate rdfs:subClassOf;
+    rr:objectMap [
+      rml:reference "SubClassOf";
+      rr:termType rr:IRI;
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate eq:reference;
+    rr:objectMap [
+      rml:reference "Reference"
+    ]
+  ].
